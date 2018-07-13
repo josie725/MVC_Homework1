@@ -7,6 +7,17 @@
 <h2>Index</h2>
 
 <p>
+    @*第一個參數是actionName
+    第二個參數是controllerName
+    所以是要找客戶資料這個controller的Search這個動作*@
+    @using (Html.BeginForm("Search", "客戶資料", FormMethod.Get, null))
+    {
+        @Html.TextBox("keyword", null, new { placeholder = "客戶名稱或統一編號" })
+        <input type="submit" value="查詢" />
+    }
+</p>
+
+<p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">

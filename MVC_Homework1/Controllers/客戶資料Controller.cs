@@ -12,12 +12,27 @@ namespace MVC_Homework1.Controllers
 {
     public class 客戶資料Controller : BaseController
     {
-      
+
+        客戶資料Repository repo = RepositoryHelper.Get客戶資料Repository();
+
 
         // GET: 客戶資料
         public ActionResult Index()
         {
             return View(db.客戶資料.ToList());
+        }
+
+
+        public ActionResult Search(string keyword)
+        {
+            var data = repo.搜尋名稱(keyword);
+
+            //if (!String.IsNullOrEmpty(keyword))
+            //{
+            //    data = data.Where(p => p.客戶名稱.Contains(keyword) || p.統一編號.Contains(keyword));
+            //}
+            return View("index", data);
+
         }
 
         // GET: 客戶資料/Details/5
@@ -64,7 +79,7 @@ namespace MVC_Homework1.Controllers
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            } 
             客戶資料 客戶資料 = db.客戶資料.Find(id);
             if (客戶資料 == null)
             {

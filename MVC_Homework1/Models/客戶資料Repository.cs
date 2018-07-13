@@ -28,6 +28,24 @@ namespace MVC_Homework1.Models
 
         }
 
+        public 客戶資料 Find(int id)
+        {
+            return this.All().FirstOrDefault(p => p.Id == id);
+        }
+
+        //關鍵字搜尋
+        public IQueryable<客戶資料> 搜尋名稱(string keyword)
+        {
+            var client = this.All();
+
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                client = client.Where(p => p.客戶名稱.Contains(keyword) || p.統一編號.Contains(keyword));
+            }
+
+            return client;
+        }
+
     }
 
 
